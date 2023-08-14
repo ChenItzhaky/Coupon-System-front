@@ -1,0 +1,16 @@
+.FollowUs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.FollowUs .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.FollowUs .row * {
+    margin: 10px;
+}

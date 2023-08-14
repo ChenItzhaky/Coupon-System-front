@@ -1,0 +1,17 @@
+.Menu {
+    display: flex;
+    flex-direction: column;
+}
+
+.Menu a {
+    font-size: 28px;
+    color: var(--success-color);
+
+}
+.Menu a:hover{
+    color: var(--success-color-dark);
+}
+
+.Menu>* {
+    margin: 5px;
+}

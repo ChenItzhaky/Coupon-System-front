@@ -1,0 +1,8 @@
+.About {
+	
+}
+.About p::first-letter{
+    font-size: 25px;
+    font-family: 700;
+    color: var(--primary-color);
+}

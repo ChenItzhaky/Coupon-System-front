@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700;900&display=swap');
+
+:root{
+    --primary-color: #3F2305;
+    --secondary-color: #F5F5F5;
+    --background-color:#F2EAD3;
+    --background-color-dark:#d4c28d;
+
+    --success-color: #28637a;
+    --success-color-dark: #092e3d;
+    --error-color:#F24C3D;
+    --error-color-dark:#9c271c;
+    --color-white:#ffffff;
+    --color-black:#000000;
+}
+
+
+body {
+    font-family: 'Playfair Display';
+}
+
+html,body,#root{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.myButton {
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: var(--success-color);
+    border: none;
+    color: var(--color-white);
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.myButton:hover {
+    background-color: var(--success-color-dark);
+    color: var(--color-white);
+}
