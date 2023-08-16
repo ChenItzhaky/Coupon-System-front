@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import * as zod from "zod";
 import webApiService from "../../../Service/WebApiService";
 import notifyService from "../../../Service/NotificationService";
-import { LoginReqModel } from "../../../Models/LoginModel";
+import { LoginReqModel, LoginResModel } from "../../../Models/LoginModel";
 import { userLoggedIn } from "../../../Redux/UserAppState";
 import { loggedInAsAdmin } from "../../../Redux/GuardAppState";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -35,8 +35,14 @@ function Login(): JSX.Element {
     return webApiService
       .login(data)
       .then((res) => {
-        dispatch(userLoggedIn(res.data));
-        console.log(data.type);
+        console.log(res.data);
+        const token = res.data.token;
+        const email = data.email;
+        const type = data.type;
+        const loginObj = {token:token,email:email,type:type} as LoginResModel;
+
+        dispatch(userLoggedIn(loginObj ));
+        console.log(loginObj);
         switch (data.type) {
           case ClientsType.ADMINISTRATOR:
             navigate("/admin");

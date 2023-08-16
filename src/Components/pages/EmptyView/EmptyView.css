@@ -1,0 +1,11 @@
+.EmptyView {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.EmptyView img{
+    border-radius: 50%;
+    border: 2px solid gray;
+}

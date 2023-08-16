@@ -38,7 +38,7 @@ const guardSlice = createSlice({
 export const {
     loggedInAsAdmin,
     removeAdminAccess,
-  } = guardSlice.actions;
+    } = guardSlice.actions;
 
 //Export the reducer
 export const guardReducer = guardSlice.reducer;
