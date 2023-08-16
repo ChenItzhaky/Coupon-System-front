@@ -20,8 +20,8 @@ class WebApiService {
     }
 
     public getAllCustomerAuth(): Promise<AxiosResponse<CustomerModel[]>> {
-        console.log(store.getState().userReducer.user.token);
-        const headers = { 'Authorization': store.getState().userReducer.user.token };
+        const token = store.getState().userReducer?.user?.token;
+        const headers = { 'Authorization': token };
         return axios.get<CustomerModel[]>(urlService.adminUrl + "/customer", { headers });
     }
 

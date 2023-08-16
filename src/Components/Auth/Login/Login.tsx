@@ -36,13 +36,14 @@ function Login(): JSX.Element {
       .login(data)
       .then((res) => {
         console.log(res.data);
-        const token = res.data.token;
-        const email = data.email;
-        const type = data.type;
-        const loginObj = {token:token,email:email,type:type} as LoginResModel;
+        // const token = res.data;
+        // const email = data.email;
+        // const type = data.type;
+        // const loginObj = {token:token,email:email,type:type} as LoginResModel;
+        // console.log(loginObj);
 
-        dispatch(userLoggedIn(loginObj ));
-        console.log(loginObj);
+        dispatch(userLoggedIn(res.data ));
+        console.log(res.data);
         switch (data.type) {
           case ClientsType.ADMINISTRATOR:
             navigate("/admin");
