@@ -10,7 +10,8 @@ import CustomerCard from "../customerCard/customerCard";
 import EmptyView from "../../pages/EmptyView/EmptyView";
 
 function AllCustomer(): JSX.Element {
-    const[CustomerList, setCustomerList] = useState<CustomerModel[]>(store.getState().customerReducer.customerList);
+    const[CustomerList, setCustomerList] = useState<CustomerModel[]>(store.getState()
+    .customerReducer.customerList);
 
     const dispatch = useDispatch();
 

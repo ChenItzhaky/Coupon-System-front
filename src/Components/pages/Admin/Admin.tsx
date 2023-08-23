@@ -14,7 +14,7 @@ function Admin(): JSX.Element {
             <button className="myButton" >delete single company {" "} </button>
             <button className="myButton" >delete single user {" "} </button>
             <Link to = {"/customerList"}><button className="myButton" > get all customer {" "} </button></Link>
-            <button className="myButton" >get all companies  {" "}</button>
+            <Link to = {"/companyList"}> <button className="myButton" >get all companies  {" "}</button></Link>
             <button className="myButton" >get all users {" "} </button>
             <button className="myButton" >update customer  {" "}</button>
             <button className="myButton" >update companies {" "} </button>

@@ -52,9 +52,9 @@ export const {
     // updatedCustomerACtion,
     deletedCustomerAction,
     clearAllCustomer
-  } = customerSlice.actions;
+    } = customerSlice.actions;
 
-  export const customerReducer =customerSlice.reducer;
+    export const customerReducer =customerSlice.reducer;
 
 
 

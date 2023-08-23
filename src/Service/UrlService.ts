@@ -4,8 +4,9 @@ class UrlService{
     public adminUrl = this.baseUrl + "api/admin";
     public customerUrl = this.baseUrl + "api/customer";
     public companyUrl = this.baseUrl + "api/company";
-    public loginUrl =this.baseUrl + "api/auth/login"
-}
+    public loginUrl =this.baseUrl + "api/auth/login";
+    
+}  
 
 const urlService = new UrlService();
 export default urlService;
