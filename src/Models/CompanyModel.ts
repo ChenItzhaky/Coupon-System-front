@@ -1,7 +1,7 @@
 
-export type Root = CompanyMode[]
+export type Root = CompanyModel[]
 
-export interface CompanyMode {
+export interface CompanyModel {
   id: number
   name: string
   email: string

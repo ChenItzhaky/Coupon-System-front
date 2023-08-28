@@ -10,6 +10,8 @@ import Company from "../../pages/Company/Company";
 import Customer from "../../pages/Customer/Customer";
 import CustomerList from "../../Customer/CustomerList/CustomerList";
 import CompanyList from "../../Company/CompanyList/CompanyList";
+import CouponList from "../../Coupon/CouponList/CouponList";
+import Coupon from "../../pages/Coupon/Coupon";
 
 
 function Routing(): JSX.Element {
@@ -24,6 +26,7 @@ function Routing(): JSX.Element {
                 <Route path="/admin" element= {<Admin/>}/>
                 <Route path="/company" element= {<Company/>}/>
                 <Route path="/customer" element= {<Customer/>}/>
+                <Route path="/coupon" element= {<Coupon/>}/>
                 <Route path="/customerList" element= {<CustomerList/>}/>
                 <Route path="/companyList" element= {<CompanyList/>}/>
                 <Route path="*" element= {<Page404/>}/>

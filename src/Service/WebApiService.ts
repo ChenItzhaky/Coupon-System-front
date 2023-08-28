@@ -5,7 +5,7 @@ import { CustomerModel } from '../Models/CustomerModel';
 import { LoginReqModel, LoginResModel } from '../Models/LoginModel';
 import store from '../Redux/Store';
 import { CompanyModel } from '../Models/CompanyModel';
-import { UserModel } from '../Models/UserModel';
+import { CouponModel } from '../Models/CouponModel';
 
 class WebApiService {
 
@@ -27,6 +27,18 @@ class WebApiService {
         return axios.get<CustomerModel[]>(urlService.adminUrl + "/customer", { headers });
     }
 
+        public getSingleCustomerAuth(id: number): Promise<AxiosResponse<CustomerModel[]>> {
+        const token = store.getState().userReducer?.user?.token;
+        const headers = { 'Authorization': token };
+        return axios.get<CustomerModel[]>(urlService.adminUrl + "/customer/" + id , { headers });
+    }
+
+        public deleteCustomerAuth(id: number): Promise<AxiosResponse<any>> {
+        const headers = { 'Authorization': store.getState().userReducer.user.token };
+        return axios.delete<any>(`${urlService.adminUrl + "/customer/"}/${id}`, { headers })
+    }
+
+    
     public getAllCompanies(): Promise<AxiosResponse<CompanyModel[]>> {
         return axios.get<CompanyModel[]>(urlService.adminUrl + "/companies");
     }
@@ -37,11 +49,18 @@ class WebApiService {
         return axios.get<CompanyModel[]>(urlService.adminUrl + "/companies", { headers });
     }
 
-    public getAllUserAuth(): Promise<AxiosResponse<UserModel[]>> {
+    public getAllCouponAuth(): Promise<AxiosResponse<CouponModel[]>> {
         const token = store.getState().userReducer?.user?.token;
         const headers = { 'Authorization': token };
-        return axios.get<UserModel[]>(urlService.adminUrl + "/user", { headers });
+        return axios.get<CouponModel[]>(urlService.couponUrl, { headers });
     }
+
+
+    // public getAllUserAuth(): Promise<AxiosResponse<UserModel[]>> {
+    //     const token = store.getState().userReducer?.user?.token;
+    //     const headers = { 'Authorization': token };
+    //     return axios.get<UserModel[]>(urlService.adminUrl + "/user", { headers });
+    // }
 
 
 

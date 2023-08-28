@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { CustomerModel } from "../../../Models/CustomerModel";
 import "./customerCard.css";
 

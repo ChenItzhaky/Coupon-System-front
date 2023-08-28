@@ -3,13 +3,17 @@ import { userReducer } from './UserAppState';
 import { guardReducer } from './GuardAppState';
 import { customerReducer } from './CustomerAppState';
 import { companyReducer } from './CompaniesAppState';
+import { couponReducer } from './CouponAppState';
 
 // This is rootReducer
 const rootReducer = {
     userReducer: userReducer,
     guardReducer: guardReducer,
     customerReducer: customerReducer,
-    companyReducer: companyReducer
+    companyReducer: companyReducer,
+    couponReducer: couponReducer
+    
+
     // add more reducers here if needed
 };
 

@@ -4,6 +4,7 @@ import { CompanyModel } from "../Models/CompanyModel";
 
 
 
+
 export class CompanyAppState{
     companyList: CompanyModel[] = [];
 }

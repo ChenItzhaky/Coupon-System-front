@@ -1,9 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./UserList.css";
+import webApiService from "../../../Service/WebApiService";
+import UserCard from "../UserCard/UserCard";
+import EmptyView from "../../pages/EmptyView/EmptyView";
+import { UserModel } from "../../../Models/UserModel";
+import store from "../../../Redux/Store";
+import { useDispatch } from "react-redux";
 
 function AllCustomer(): JSX.Element {
     const[UserList, setUserList] = useState<UserModel[]>(store.getState()
-    .customerReducer.customerList);
+    .userReducer.userList);
 
     const dispatch = useDispatch();
 
