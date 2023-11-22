@@ -1,6 +1,7 @@
 import "./Admin.css";
 import { Link } from 'react-router-dom';
 
+const id = 1;
 
 function Admin(): JSX.Element {
     return (
@@ -10,7 +11,7 @@ function Admin(): JSX.Element {
             <button className="myButton" >get single customer {" "} </button>
             <button className="myButton" >get single company {" "} </button>
             {/* <button className="myButton" >get single user {" "} </button> */}
-            <button className="myButton" >delete single customer {" "} </button>
+            <Link to = {`/deleteCustomer`}> <button className="myButton" >delete single customer {" "} </button></Link>
             <button className="myButton" >delete single company {" "} </button>
             {/* <button className="myButton" >delete single user {" "} </button> */}
             <Link to = {"/customerList"}><button className="myButton" > get all customer {" "} </button></Link>

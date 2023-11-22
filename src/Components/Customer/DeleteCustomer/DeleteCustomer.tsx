@@ -2,7 +2,9 @@ import { useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import notifyService from "../../../Service/NotificationService";
 import webApiService from "../../../Service/WebApiService";
+import { deletedCustomerAction } from "../../../Redux/CustomerAppState";
 
+function DeleteCustomer(): JSX.Element {
 const dispatch = useDispatch();
 
 const params = useParams();
@@ -26,9 +28,9 @@ const no = () => {
 }
 
 return (
-    <div className="DeleteTodo">
-        <h1>Delete Task</h1>
-        <p>Are you sure you want to delete todo #{id}?</p>
+    <div className="CustomerTodo">
+        <h1>Delete Customer</h1>
+        <p>Are you sure you want to delete customer #{id}?</p>
         <div className="row">
             <button onClick={yes} className="danger">Yes</button>
             <button onClick={no}>Cancel</button>

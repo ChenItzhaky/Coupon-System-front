@@ -12,6 +12,8 @@ import CustomerList from "../../Customer/CustomerList/CustomerList";
 import CompanyList from "../../Company/CompanyList/CompanyList";
 import CouponList from "../../Coupon/CouponList/CouponList";
 import Coupon from "../../pages/Coupon/Coupon";
+import DeleteCustomer from "../../Customer/DeleteCustomer/DeleteCustomer";
+import DeleteCompany from "../../Company/DeleteCompany/DeleteCompany";
 
 
 function Routing(): JSX.Element {
@@ -26,6 +28,8 @@ function Routing(): JSX.Element {
                 <Route path="/admin" element= {<Admin/>}/>
                 <Route path="/company" element= {<Company/>}/>
                 <Route path="/customer" element= {<Customer/>}/>
+                <Route path="/deleteCustomer/:id" element= {<DeleteCustomer/>}/>
+                <Route path="/deleteCompany/:id" element= {<DeleteCompany/>}/>
                 <Route path="/coupon" element= {<Coupon/>}/>
                 <Route path="/customerList" element= {<CustomerList/>}/>
                 <Route path="/companyList" element= {<CompanyList/>}/>

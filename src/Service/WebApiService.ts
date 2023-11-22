@@ -30,12 +30,17 @@ class WebApiService {
         public getSingleCustomerAuth(id: number): Promise<AxiosResponse<CustomerModel[]>> {
         const token = store.getState().userReducer?.user?.token;
         const headers = { 'Authorization': token };
-        return axios.get<CustomerModel[]>(urlService.adminUrl + "/customer/" + id , { headers });
+        return axios.get<CustomerModel[]>(`${urlService.adminUrl + "/customer"}/${id}` , { headers });
     }
 
         public deleteCustomerAuth(id: number): Promise<AxiosResponse<any>> {
         const headers = { 'Authorization': store.getState().userReducer.user.token };
-        return axios.delete<any>(`${urlService.adminUrl + "/customer/"}/${id}`, { headers })
+        return axios.delete<any>(`${urlService.adminUrl + "/customer"}/${id}`, { headers })
+    }
+
+        public deleteCompanyAuth(id: number): Promise<AxiosResponse<any>> {
+        const headers = { 'Authorization': store.getState().userReducer.user.token };
+        return axios.delete<any>(`${urlService.adminUrl + "/companies"}/${id}`, { headers })
     }
 
     
