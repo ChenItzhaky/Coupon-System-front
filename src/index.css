@@ -37,9 +37,25 @@ html,body,#root{
     display: inline-block;
     transition-duration: 0.4s;
     cursor: pointer;
+    margin: 5px;
 }
 
 .myButton:hover {
     background-color: var(--success-color-dark);
     color: var(--color-white);
+}
+
+form {
+    display: inline-flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+form > *{
+    margin: 5px;
+}
+
+form span {
+    color: red;
+    font-weight: 600;
 }

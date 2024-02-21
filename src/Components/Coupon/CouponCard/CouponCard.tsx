@@ -1,3 +1,4 @@
+import moment from "moment";
 import { CouponModel } from "../../../Models/CouponModel";
 import "./CouponCard.css";
 
@@ -8,10 +9,17 @@ interface CouponCardProps {
 function CouponCard(props: CouponCardProps): JSX.Element {
     return (
         <div className="CouponCard">
-			<h3>{`${props.coupon.title} " " ${props.coupon.description} (#${props.coupon.id})`} </h3>
+            <h3>Coupon ID: #{props.coupon.id}</h3>
+			<h3>Coupon title {props.coupon.title} </h3>
+            <h3>Description: {props.coupon.description} </h3>
+            <h3>Category: {props.coupon.category}</h3>
+            <h3>Start Date: {moment (props.coupon.startDate).format("DD/MM/yy")} </h3>
+            <h3>End Date: {moment (props.coupon.endDate).format("DD/MM/yy")} </h3>
+            <h3>Amount: {props.coupon.amount} </h3>
+            <h3>Price: {props.coupon.price} </h3>
+            <h3>Image: {props.coupon.image} </h3>
             
             
-            <hr />
         </div>
     );
 }

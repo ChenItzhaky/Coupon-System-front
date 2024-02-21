@@ -61,7 +61,7 @@ function Login(): JSX.Element {
             navigate("/Page404");
         }
 
-        console.log("sexses");
+        console.log("success");
       })
       .catch((err) => notifyService.error(err));
   };

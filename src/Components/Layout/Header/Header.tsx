@@ -7,7 +7,8 @@ function Header(): JSX.Element {
             <img src={logo} alt="goat logo" width={50} height={50} />
             <h1>Coupon System</h1>
             <Link to={"/login"}><button className="myButton" >Login </button></Link>
-            <button className="myButton" onClick={() => console.log("gdfsgh")}>Logout</button>
+            <Link to={"/register"}><button className="myButton" >Register </button></Link>
+            <Link to= {"/logout"}> <button className="myButton" onClick={() => console.log("logd out")}>Logout</button></Link>
         </div>
     );
 }

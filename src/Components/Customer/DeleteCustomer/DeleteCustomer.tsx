@@ -6,7 +6,6 @@ import { deletedCustomerAction } from "../../../Redux/CustomerAppState";
 
 function DeleteCustomer(): JSX.Element {
 const dispatch = useDispatch();
-
 const params = useParams();
 const id = +(params.id || 0);
 

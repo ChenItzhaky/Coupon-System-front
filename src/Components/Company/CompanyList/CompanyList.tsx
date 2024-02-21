@@ -10,7 +10,8 @@ import EmptyView from "../../pages/EmptyView/EmptyView";
 import CompanyCard from "../CompanyCard/CompanyCard";
 
 function AllCompanies(): JSX.Element {
-    const[CompanyList, setCompanyList] = useState<CompanyModel[]>(store.getState()
+    const[CompanyList, setCompanyList] = 
+    useState<CompanyModel[]>(store.getState()
     .companyReducer.companyList);
 
     const dispatch = useDispatch();
@@ -47,7 +48,7 @@ function AllCompanies(): JSX.Element {
             {
                 (CompanyList.length !== 0) ?
 
-                CompanyList.map((t, idx) => <CompanyCard key={`company-card-${idx}`} company={t} />) :
+                CompanyList.map((c, idx) => <CompanyCard key={`company-card-${idx}`} company={c} />) :
                     <EmptyView
                         title={"No Items Found"}
                         description={"there are no tasks available right now"} />

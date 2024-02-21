@@ -31,7 +31,7 @@ const customerSlice = createSlice({
             state.customerList = action.payload;
         },
         gotSingleCustomerAction(state, action: PayloadAction<CustomerModel>) {
-
+            state.customerList.push(action.payload);
         },
         
         addedCustomerAction(state, action: PayloadAction<CustomerModel>) {
@@ -41,21 +41,25 @@ const customerSlice = createSlice({
             const idx = state.customerList.findIndex(cus => cus.id === action.payload.id);
             state.customerList[idx] = action.payload;
         },
+
         deletedCustomerAction(state, action: PayloadAction<number>) {
             state.customerList = state.customerList.filter((customer) => customer.id !== action.payload);
         },
         clearAllCustomer(state) {
             state.customerList = initialState.customerList;
+        },
+        gotThisCustomerAction(state, action: PayloadAction<CustomerModel>){
+            state.customerList.push(action.payload);
         }
-        
 
     },
 });
 export const {
     gotAllCustomerAction,
+    gotThisCustomerAction,
     gotSingleCustomerAction,
     addedCustomerAction,
-    // updatedCustomerACtion,
+    updatedCustomerAction,
     deletedCustomerAction,
     clearAllCustomer
     } = customerSlice.actions;

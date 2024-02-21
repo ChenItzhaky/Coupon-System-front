@@ -10,10 +10,22 @@ import Company from "../../pages/Company/Company";
 import Customer from "../../pages/Customer/Customer";
 import CustomerList from "../../Customer/CustomerList/CustomerList";
 import CompanyList from "../../Company/CompanyList/CompanyList";
-import CouponList from "../../Coupon/CouponList/CouponList";
 import Coupon from "../../pages/Coupon/Coupon";
 import DeleteCustomer from "../../Customer/DeleteCustomer/DeleteCustomer";
 import DeleteCompany from "../../Company/DeleteCompany/DeleteCompany";
+import CompanySingle from "../../Company/CompanySingle/CompanySingle";
+import CustomerSingle from "../../Customer/CustomerSingle/CustomerSingle";
+import CompanyCoupon from '../../Company/CompanyCoupon/CompanyCoupon';
+import AddCoupon from "../../Company/AddCoupon/AddCoupon";
+import ThisCompany from "../../Company/ThisCompany/ThisCompany";
+import ThisCustomer from "../../Customer/ThisCustomer/ThisCustomer";
+import DeleteCoupon from "../../Coupon/DeleteCoupon/DeleteCoupon";
+import UpdateCustomer from "../../Customer/UpdateCustomer/UpdateCustomer";
+import Logout from "../../Auth/Logout/Logout";
+import CouponList from "../../Coupon/CouponList/CouponList";
+import Register from "../../Auth/Register/Register";
+import RegisterCompany from "../../Auth/RegisterCompany/RegisterCompany";
+import CouponByCategory from "../../Coupon/CouponByCategory/CouponByCategory";
 
 
 function Routing(): JSX.Element {
@@ -25,14 +37,30 @@ function Routing(): JSX.Element {
                 <Route index element= {<Home/>}/>
                 <Route path="/About" element= {<About/>}/>
                 <Route path="/login" element= {<Login/>}/>
+                <Route path="/logout" element= {<Logout/>}/>
+                <Route path="/register" element= {<Register/>}/>
+                <Route path="/registerCompany" element= {<RegisterCompany/>}/>
                 <Route path="/admin" element= {<Admin/>}/>
                 <Route path="/company" element= {<Company/>}/>
                 <Route path="/customer" element= {<Customer/>}/>
                 <Route path="/deleteCustomer/:id" element= {<DeleteCustomer/>}/>
                 <Route path="/deleteCompany/:id" element= {<DeleteCompany/>}/>
+                <Route path="/deleteCoupon/:id" element= {<DeleteCoupon/>}/>
+                <Route path="/updateCustomer/:id" element= {<UpdateCustomer/>}/>
+                {/* <Route path="/updateCompany/:id" element= {<UpdateCompony/>}/> */}
                 <Route path="/coupon" element= {<Coupon/>}/>
+                <Route path="/couponList" element= {<CouponList/>}/>
                 <Route path="/customerList" element= {<CustomerList/>}/>
-                <Route path="/companyList" element= {<CompanyList/>}/>
+                <Route path="/companyList" element= {<CompanyList/>}/> 
+                <Route path="/customerSingle" element= {<CustomerSingle/>}/>
+                <Route path="/companySingle" element= {<CompanySingle/>}/>
+                <Route path="/thisCompany" element= {<ThisCompany/>}/>
+                <Route path="/thisCustomer" element= {<ThisCustomer/>}/>
+                <Route path="/companyCoupons" element= {<CompanyCoupon/>}/>
+                <Route path="/addCoupons" element= {<AddCoupon/>}/>
+                <Route path="/couponByCategory" element= {<CouponByCategory/>}/>
+
+
                 <Route path="*" element= {<Page404/>}/>
             </Routes>
         </div>

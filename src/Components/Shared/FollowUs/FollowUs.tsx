@@ -1,5 +1,5 @@
 import "./FollowUs.css";
-import { FaGithub, FaLinkedin, FaTwitterSquare } from "react-icons/fa";
+import { FaGithub, FaLinkedin  } from "react-icons/fa";
 function FollowUs(): JSX.Element {
     return (
         <div className="FollowUs">
@@ -7,7 +7,6 @@ function FollowUs(): JSX.Element {
             <div className="row">
                 <a href="https://www.linkedin.com/in/kobishasha"><FaLinkedin size={36} /></a>
                 <a href="https://github.com/KobiShashs"><FaGithub size={36} /></a>
-                <a href="https://twitter.com/kobi_shasha"><FaTwitterSquare size={36} /></a>
             </div>
         </div>
     );

@@ -15,16 +15,13 @@ function AllCoupons(): JSX.Element {
 
     const dispatch = useDispatch();
 
-
-
-    // Effect = very very very very long operation...
     useEffect(() => {
 
         if (CouponList.length > 0) {
             return;
         }
 
-        webApiService.getAllCouponAuth()
+        webApiService.getAllCoupon()
             .then(res => {
                 notifyService.success('coupon list');
                 setCouponList(res.data);
@@ -38,19 +35,18 @@ function AllCoupons(): JSX.Element {
 
     }, []);
     
-
     return (
 
-        <div className="CompanyList">
-			<h1> all companies  </h1>
+        <div className="CouponList">
+			<h1> all coupon  </h1>
 
             {
                 (CouponList.length !== 0) ?
 
-                CouponList.map((t, idx) => <CouponCard key={`coupon-card-${idx}`} coupon ={t} />) :
+                CouponList.map((cou, idx) => <CouponCard key={`coupon-card-${idx}`} coupon ={cou} />) :
                     <EmptyView
                         title={"No Items Found"}
-                        description={"there are no tasks available right now"} />
+                        description={"there are no coupons available right now"} />
             }
             
         </div>

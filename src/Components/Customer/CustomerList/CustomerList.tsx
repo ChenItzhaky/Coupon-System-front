@@ -10,7 +10,8 @@ import CustomerCard from "../customerCard/customerCard";
 import EmptyView from "../../pages/EmptyView/EmptyView";
 
 function AllCustomer(): JSX.Element {
-    const[CustomerList, setCustomerList] = useState<CustomerModel[]>(store.getState()
+    const[CustomerList, setCustomerList] =
+    useState<CustomerModel[]>(store.getState()
     .customerReducer.customerList);
 
     const dispatch = useDispatch();
@@ -47,7 +48,7 @@ function AllCustomer(): JSX.Element {
             {
                 (CustomerList.length !== 0) ?
 
-                CustomerList.map((t, idx) => <CustomerCard key={`customer-card-${idx}`} customer={t} />) :
+                CustomerList.map((c, idx) => <CustomerCard key={`customer-card-${idx}`} customer={c} />) :
                     <EmptyView
                         title={"No Items Found"}
                         description={"there are no tasks available right now"} />

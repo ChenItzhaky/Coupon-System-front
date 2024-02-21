@@ -26,6 +26,9 @@ const couponSlice = createSlice({
         gotAllCouponAction(state, action: PayloadAction<CouponModel[]>) {
             state.couponList = action.payload;
         },
+        gotAllCompanyCouponAction(state, action: PayloadAction<CouponModel[]>) {
+            state.couponList = action.payload;
+        },
         addedCouponAction(state, action: PayloadAction<CouponModel>) {
             state.couponList.push(action.payload);
         },
@@ -44,6 +47,7 @@ const couponSlice = createSlice({
 });
 export const {
     gotAllCouponAction,
+    gotAllCompanyCouponAction,
     // gotSingleCouponAction,
     addedCouponAction,
     // updatedCouponACtion,
