@@ -17,7 +17,6 @@ const yes = () => {
     webApiService.deleteCompanyAuth(id)
         .then(() => {
             notifyService.success(`deleted company #${id} successfully`);
-            // store.dispatch(deletedCompanyAction(id));
             dispatch(deletedCompanyAction(id));
             navigate(-1);
         })

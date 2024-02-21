@@ -2,8 +2,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { CustomerModel } from "../Models/CustomerModel";
 
 
-
-
 export class CustomerAppState{
     customerList: CustomerModel[] = [];
 }
@@ -51,6 +49,7 @@ const customerSlice = createSlice({
         gotThisCustomerAction(state, action: PayloadAction<CustomerModel>){
             state.customerList.push(action.payload);
         }
+        
 
     },
 });

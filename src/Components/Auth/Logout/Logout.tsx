@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import "./Logout.css";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { userLoggedOut } from "../../../Redux/UserAppState";
+import { userLoggedOut } from "../../../Redux/LogUserAppState";
 import { removeAdminAccess } from "../../../Redux/GuardAppState";
 import { clearAllCompany } from "../../../Redux/CompaniesAppState";
 import { clearAllCustomer } from "../../../Redux/CustomerAppState";

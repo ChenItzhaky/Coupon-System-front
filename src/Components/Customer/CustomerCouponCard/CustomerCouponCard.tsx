@@ -1,14 +1,13 @@
-import { Link } from "react-router-dom";
-import { CouponModel } from "../../../Models/CouponModel";
-import "./CompanyCouponCard.css";
 import moment from "moment";
+import { CouponModel } from "../../../Models/CouponModel";
+import "./CustomerCouponCard.css";
+import { Link } from "react-router-dom";
 
-interface CompanyCouponCardProps {
+interface CouponCardProps {
     coupon: CouponModel;  
 }
 
-function CouponCard(props: CompanyCouponCardProps): JSX.Element {
-    
+function CouponCard(props: CouponCardProps): JSX.Element {
     return (
         <div className="CouponCard">
             <h3>Coupon ID: #{props.coupon.id}</h3>
@@ -19,17 +18,14 @@ function CouponCard(props: CompanyCouponCardProps): JSX.Element {
             <h3>End Date: {moment (props.coupon.endDate).format("DD/MM/yy")} </h3>
             <h3>Amount: {props.coupon.amount} </h3>
             <h3>Price: {props.coupon.price} </h3>
-            <h3>Image: <h3>Image: <img src={props.coupon.image}/> </h3> </h3>
+            <h3>Image: <img src={props.coupon.image}/> </h3>
             
-            <div>
-            <Link to={`/deleteCoupon/${props.coupon.id}`}><button className="myButton" > delete coupon </button></Link>
-            <Link to={`/updateCoupon/${props.coupon.id}`}><button className="myButton" > update coupon</button></Link>
-            </div>
+            <Link to={`/purchaseCoupon/${props.coupon.id}`}><button className="myButton" > purchase coupon</button></Link>
+            
             
         </div>
     );
 }
-// 
 
 
 export default CouponCard;

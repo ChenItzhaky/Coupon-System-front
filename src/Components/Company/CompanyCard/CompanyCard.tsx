@@ -14,7 +14,7 @@ function CompanyCard(props: CompanyCardProps): JSX.Element {
             ${props.company.email} (#${props.company.id})`} </h3>
             
             <Link to = {`/deleteCompany/ ${props.company.id}`}><button className="myButton" >delete single company {" "} </button></Link>
-            <Link to = {`/updateCompany/ ${props.company.id}`}> <button className="myButton" >update this Company {" "} </button></Link>
+            <Link to = {`/updateCompony/ ${props.company.id}`}> <button className="myButton" >update this Company {" "} </button></Link>
 
             <hr />
         </div>

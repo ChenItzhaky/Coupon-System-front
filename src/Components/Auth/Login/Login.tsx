@@ -6,7 +6,7 @@ import * as zod from "zod";
 import webApiService from "../../../Service/WebApiService";
 import notifyService from "../../../Service/NotificationService";
 import { LoginReqModel, LoginResModel } from "../../../Models/LoginModel";
-import { userLoggedIn } from "../../../Redux/UserAppState";
+import { userLoggedIn } from "../../../Redux/LogUserAppState";
 import { loggedInAsAdmin } from "../../../Redux/GuardAppState";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link } from "react-router-dom";

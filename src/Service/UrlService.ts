@@ -1,3 +1,5 @@
+
+
 class UrlService{
     private baseUrl = "http://localhost:8080";
     public authUrl = this.baseUrl + "/api/auth/";
@@ -14,8 +16,11 @@ class UrlService{
     public adminCompanyUrl =this.adminUrl+ "/company";
     public addCompanyUrl =this.baseUrl + "/api/admin/companies/add"
     public companyCouponUrl =this.companyUrl + "/coupons";
-    public customerCouponUrl =this.customerUrl + "/coupons";
+    public customerCouponUrl =this.customerUrl + "/coupon";
     public AddCoupon =this.companyCouponUrl + "/add";
+    public PurchaseCoupon =this.baseUrl + "/api/customer/purchase";
+    public allUsersUrl =this.baseUrl + "/api/admin/user";
+    public UpdateCouponUrl=this.baseUrl + "/api/company/coupons";
     
 }  
 

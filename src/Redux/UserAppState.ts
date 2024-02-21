@@ -1,51 +1,35 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { LoginResModel } from '../Models/LoginModel';
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { UserModel } from "../Models/UserModel";
 
+
+export class UserAppState {
+    userList: UserModel[] = [];
+}
 
 interface UserState {
-    user: LoginResModel
+    userList: UserModel[];
 }
 
-
-
-//This is the initialized Task Application State - initialize within empty array
-const initialState: UserState = {
-    user: { token: "", email: "" , type:null}
+const initialState: UserState={
+    userList: [],
 };
 
-
-//These are all possible actions
-export enum ActionType {
-    USER_lOGGED_IN = "USER_lOGGED_IN",
-    USER_REGISTERED = "USER_REGISTERED",
-    USER_LOGGED_OUT = "USER_LOGGED_OUT",
+export enum UserActionType{
+    GOT_ALL_USERS = "GOT_ALL_USERS",
 }
-
 
 const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        userLoggedIn(state, action: PayloadAction<LoginResModel>) {
-            state.user = action.payload;
-            console.log(action.payload);
+        gotAllUserAction(state, action: PayloadAction<UserModel[]>) {
+            state.userList = action.payload;
         },
-
-        userLoggedOut(state) {
-            state.user = initialState.user;
-        },
-
     },
+
 });
+export const{
+    gotAllUserAction,
+}= userSlice.actions;
 
-
-//This is the exported tasks
-export const {
-    userLoggedIn,
-    userLoggedOut,
-   } = userSlice.actions;
-
-
-
-//Export the reducer
 export const userReducer = userSlice.reducer;

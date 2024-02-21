@@ -25,7 +25,13 @@ import Logout from "../../Auth/Logout/Logout";
 import CouponList from "../../Coupon/CouponList/CouponList";
 import Register from "../../Auth/Register/Register";
 import RegisterCompany from "../../Auth/RegisterCompany/RegisterCompany";
-import CouponByCategory from "../../Coupon/CouponByCategory/CouponByCategory";
+// import CouponByCategory from "../../Coupon/CouponByCategory/CouponByCategory";
+import MyCouponList from "../../Customer/MyCouponList/MyCouponList";
+import CustomerCouponList from "../../Coupon/CustomerCouponList/CustomerCouponList";
+import PurchaseCoupon from "../../Coupon/purchaseCoupon/purchaseCoupon";
+import UserList from "../../User/UserList/UserList";
+import UpdateCoupon from "../../Coupon/UpdateCoupon/UpdateCoupon";
+import UpdateCompony from "../../Company/UpdateCompany/UpdateCompany";
 
 
 function Routing(): JSX.Element {
@@ -47,18 +53,24 @@ function Routing(): JSX.Element {
                 <Route path="/deleteCompany/:id" element= {<DeleteCompany/>}/>
                 <Route path="/deleteCoupon/:id" element= {<DeleteCoupon/>}/>
                 <Route path="/updateCustomer/:id" element= {<UpdateCustomer/>}/>
-                {/* <Route path="/updateCompany/:id" element= {<UpdateCompony/>}/> */}
+                <Route path="/updateCoupon/:id" element= {<UpdateCoupon/>}/>
+                <Route path="/updateCompony/:id" element= {<UpdateCompony/>}/>
                 <Route path="/coupon" element= {<Coupon/>}/>
                 <Route path="/couponList" element= {<CouponList/>}/>
                 <Route path="/customerList" element= {<CustomerList/>}/>
                 <Route path="/companyList" element= {<CompanyList/>}/> 
+                <Route path="/useList" element= {<UserList/>}/> 
                 <Route path="/customerSingle" element= {<CustomerSingle/>}/>
                 <Route path="/companySingle" element= {<CompanySingle/>}/>
                 <Route path="/thisCompany" element= {<ThisCompany/>}/>
                 <Route path="/thisCustomer" element= {<ThisCustomer/>}/>
                 <Route path="/companyCoupons" element= {<CompanyCoupon/>}/>
                 <Route path="/addCoupons" element= {<AddCoupon/>}/>
-                <Route path="/couponByCategory" element= {<CouponByCategory/>}/>
+                {/* <Route path="/couponByCategory" element= {<CouponByCategory/>}/> */}
+                <Route path="/customerCouponList" element= {<CustomerCouponList/>}/>
+                <Route path="/myCouponList" element= {<MyCouponList/>}/>
+                <Route path="/purchaseCoupon/:id" element= {<PurchaseCoupon/>}/>
+            
 
 
                 <Route path="*" element= {<Page404/>}/>

@@ -5,10 +5,14 @@ export class CompanyAppState{
     companyList: CouponModel[] = [];
 }
 interface CouponState {
-    couponList: CouponModel[];
+    allCouponList: CouponModel[];
+    mineCouponList: CouponModel[];
+    companyCouponList: CouponModel[];
 }
 const initialState: CouponState = {
-    couponList: [],
+    allCouponList: [],
+    mineCouponList: [],
+    companyCouponList: [],
 };
 export enum CompanyActionType {
     GOT_ALL_COUPON = "GOT_ALL_COUPON",
@@ -24,35 +28,47 @@ const couponSlice = createSlice({
     initialState,
     reducers: {
         gotAllCouponAction(state, action: PayloadAction<CouponModel[]>) {
-            state.couponList = action.payload;
+            state.allCouponList = action.payload;
         },
         gotAllCompanyCouponAction(state, action: PayloadAction<CouponModel[]>) {
-            state.couponList = action.payload;
+            state.companyCouponList = action.payload;
         },
+        gotAllCustomerCouponAction(state, action: PayloadAction<CouponModel[]>) {
+            state.mineCouponList = action.payload;
+        },
+        
         addedCouponAction(state, action: PayloadAction<CouponModel>) {
-            state.couponList.push(action.payload);
+            state.allCouponList.push(action.payload);
         },
         updatedCouponAction(state, action: PayloadAction<CouponModel>) {
-            const idx = state.couponList.findIndex(t => t.id === action.payload.id);
-            state.couponList[idx] = action.payload;
+            const idx = state.allCouponList.findIndex(t => t.id === action.payload.id);
+            state.allCouponList[idx] = action.payload;
         },
         deletedCouponAction(state, action: PayloadAction<number>) {
-            state.couponList = state.couponList.filter((coupon) => coupon.id !== action.payload);
+            state.allCouponList = state.allCouponList.filter((coupon) => coupon.id !== action.payload);
         },
+        updatedPurchaseCouponAction(state, action: PayloadAction<number>) {
+            state.allCouponList = state.allCouponList.filter((coupon) => coupon.id !== action.payload);
+        },
+
         clearAllCoupon(state) {
-            state.couponList = initialState.couponList;
-        } 
+            state.allCouponList = initialState.allCouponList;
+        }, 
+
+
 
     },
 });
 export const {
     gotAllCouponAction,
     gotAllCompanyCouponAction,
+    gotAllCustomerCouponAction,
     // gotSingleCouponAction,
     addedCouponAction,
-    // updatedCouponACtion,
+    updatedCouponAction,
     deletedCouponAction,
-    clearAllCoupon
+    clearAllCoupon,
+    updatedPurchaseCouponAction,
     } = couponSlice.actions;
 
     export const couponReducer =couponSlice.reducer;

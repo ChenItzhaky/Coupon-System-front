@@ -1,3 +1,14 @@
-.customerCard {
+.CustomerCard {
+    border: 2px dashed #ff9800;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    background-color: #fff;
 	
+}
+
+
+.CustomerCard img{
+    max-width: 25px;
+
 }

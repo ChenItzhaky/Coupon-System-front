@@ -24,7 +24,7 @@ function ThisCustomer(): JSX.Element {
         <div className="thisCustomer">
             <h1> your details </h1>
             {customer && (
-                <div className="customerCard">
+                <div className="CustomerCard">
                     
                     <p>ID: {customer.id}</p>
                     <p>First name: {customer.firstName}</p>
@@ -35,7 +35,7 @@ function ThisCustomer(): JSX.Element {
                     <h2>coupon list</h2>
                     <ul className="CouponList">
                         {customer.couponList.map((Coupon) => (
-                                <li key={Coupon.id} className="couponCard">
+                                <li key={Coupon.id} className="CouponCard">
                                     <p>title: {Coupon.title}</p>
                                     <p>description: {Coupon.description}</p>
                                     <p>category: {Coupon.category}</p>
@@ -43,7 +43,7 @@ function ThisCustomer(): JSX.Element {
                                     <p>end date: {Coupon.endDate.toString()}</p>
                                     <p>amount: {Coupon.amount}</p>
                                     <p>price: {Coupon.price}</p>
-                                    <p>image: {Coupon.image}</p>
+                                    <p>image: <img src={Coupon.image} /></p>
     
                                 </li>
                             ))}

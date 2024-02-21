@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import "./CouponList.css";
+import "./MyCouponList.css";
 import { CouponModel } from "../../../Models/CouponModel";
 import { useDispatch } from "react-redux";
 import webApiService from "../../../Service/WebApiService";
 import notifyService from "../../../Service/NotificationService";
-import { gotAllCouponAction } from "../../../Redux/CouponAppState";
+import {  gotAllCustomerCouponAction } from "../../../Redux/CouponAppState";
 import store from "../../../Redux/Store";
-import CouponCard from "../CouponCard/CouponCard";
 import EmptyView from "../../pages/EmptyView/EmptyView";
+import CouponCard from "../../Coupon/CouponCard/CouponCard";
 
-function AllCoupons(): JSX.Element {
+function MyCouponList(): JSX.Element {
     const[CouponList, setCouponList] = useState<CouponModel[]>(store.getState()
-    .couponReducer.allCouponList);
+    .couponReducer.mineCouponList);
 
     const dispatch = useDispatch();
 
@@ -21,12 +21,12 @@ function AllCoupons(): JSX.Element {
             return;
         }
 
-        webApiService.getAllCoupon()
+        webApiService.getAllCustomerCouponAuth()
             .then(res => {
                 notifyService.success('coupon list');
-                setCouponList(res.data);
-                store.dispatch(gotAllCouponAction(res.data));
-                dispatch(gotAllCouponAction(res.data));
+                setCouponList(res.data)
+                store.dispatch(gotAllCustomerCouponAction(res.data));
+                dispatch(gotAllCustomerCouponAction(res.data));
                 console.log(res.data);
             })
             .catch((err)=>{
@@ -46,11 +46,11 @@ function AllCoupons(): JSX.Element {
                 CouponList.map((cou, idx) => <CouponCard key={`coupon-card-${idx}`} coupon ={cou} />) :
                     <EmptyView
                         title={"No Items Found"}
-                        description={"owr otters cod not find any coupons"} />
+                        description={"there are no coupons available right now"} />
             }
             
         </div>
     );
 }
 
-export default AllCoupons;
+export default MyCouponList;

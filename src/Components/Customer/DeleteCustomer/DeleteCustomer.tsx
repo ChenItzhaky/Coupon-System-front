@@ -8,7 +8,6 @@ function DeleteCustomer(): JSX.Element {
 const dispatch = useDispatch();
 const params = useParams();
 const id = +(params.id || 0);
-
 const navigate = useNavigate();
 
 const yes = () => {

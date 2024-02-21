@@ -10,15 +10,13 @@ import { gotAllCompanyCouponAction } from "../../../Redux/CouponAppState";
 import CompanyCouponCard from "../CompanyCouponCard/CompanyCouponCard";
 
 function CompanyCoupon(): JSX.Element {
-    // State = React Mechanism for managing data in component
-    const [couponList, setCouponList] = useState<CouponModel[]>(store.getState().couponReducer.couponList);
-
+    const [companyCouponList, setCouponList] = useState<CouponModel[]>(store.getState().couponReducer.companyCouponList);
     const dispatch = useDispatch();
 
 
     useEffect(() => {
 
-        if (couponList.length > 0) {
+        if (companyCouponList.length > 0) {
             return;
         }
 
@@ -26,7 +24,6 @@ function CompanyCoupon(): JSX.Element {
             .then(res => {
                 notifyService.success('all your coupons');
                 setCouponList(res.data);
-                // store.dispatch(gotAllTasksAction(res.data));
                 dispatch(gotAllCompanyCouponAction(res.data));
                 console.log(res.data);
             })
@@ -35,16 +32,16 @@ function CompanyCoupon(): JSX.Element {
     }, []);
 
     return (
-        <div className="companyCoupon">
+        <div className="CompanyCoupon">
             <h1>coupon List</h1>
 
             {
-                (couponList.length !== 0) ?
+                (companyCouponList.length !== 0) ?
 
-                couponList.map((c, idx) => <CompanyCouponCard key={`coupon-card-${idx}`} coupon={c} />) :
+                companyCouponList.map((c, idx) => <CompanyCouponCard key={`coupon-card-${idx}`} coupon={c} />) :
                     <EmptyView
                         title={"No Items Found"}
-                        description={"there are no tasks available right now"} />
+                        description={"there are no coupons registered to this company right now"} />
             }
         </div>
     );

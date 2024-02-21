@@ -6,41 +6,41 @@ import { useDispatch } from "react-redux";
 import { CustomerModel } from "../../../Models/CustomerModel";
 import { gotSingleCustomerAction } from "../../../Redux/CustomerAppState";
 import EmptyView from "../../pages/EmptyView/EmptyView";
-import CustomerCard from "../customerCard/customerCard";
+import CustomerCard from "../CustomerCard/CustomerCard";
 import { useForm } from "react-hook-form";
 
 function SingleCustomer(): JSX.Element {
-  const dispatch = useDispatch();
-  const {
-      handleSubmit,
-      register,
-      formState: {errors},
-  }= useForm();
+    const dispatch = useDispatch();
+    const {
+    handleSubmit,
+    register,
+    formState: {errors},
+}= useForm();
   const [customer, setCustomer] =useState<CustomerModel | null> (null)  //(store.getState().companyReducer.companyList)
   
-  const onSubmit = (data:{id: string}) => {
-      const comId = parseInt(data.id);
+    const onSubmit = (data:{id: string}) => {
+        const comId = parseInt(data.id);
   
-      if (!isNaN(comId)){
-          webApiService.getSingleCustomerAuth(comId)
-          .then((res) =>{
-              notifyService.success(`customer #${comId} fond`);
-              dispatch(gotSingleCustomerAction(res.data[0]));
-              setCustomer(res.data[0])
-          })
-          .catch((err) => notifyService.error(err));
+        if (!isNaN(comId)){
+            webApiService.getSingleCustomerAuth(comId)
+            .then((res) =>{
+                notifyService.success(`customer #${comId} fond`);
+                dispatch(gotSingleCustomerAction(res.data[0]));
+                setCustomer(res.data[0])
+            })
+            .catch((err) => notifyService.error(err));
       
       }
       else{
           notifyService.error("please enter a valid customer id")
       }
-  };
-  return (
-      <div className="customerSingle">
-          <h1> single customer </h1>
-          <form onSubmit={handleSubmit(onSubmit)}>
-              {errors?.id ?(
-                  <span>{errors.id.message = ("please enter a valid customer id")}</span>
+    };
+    return (
+        <div className="customerSingle">
+            <h1> single customer </h1>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                {errors?.id ?(
+                    <span>{errors.id.message = ("please enter a valid customer id")}</span>
               ) : (
               <>
               <label htmlFor="id">id</label>

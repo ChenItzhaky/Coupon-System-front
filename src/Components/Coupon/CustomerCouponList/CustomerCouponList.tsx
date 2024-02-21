@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./CouponList.css";
+import "./CustomerCouponList.css";
 import { CouponModel } from "../../../Models/CouponModel";
 import { useDispatch } from "react-redux";
 import webApiService from "../../../Service/WebApiService";
@@ -8,8 +8,9 @@ import { gotAllCouponAction } from "../../../Redux/CouponAppState";
 import store from "../../../Redux/Store";
 import CouponCard from "../CouponCard/CouponCard";
 import EmptyView from "../../pages/EmptyView/EmptyView";
+import CustomerCouponCard from "../../Customer/CustomerCouponCard/CustomerCouponCard";
 
-function AllCoupons(): JSX.Element {
+function AllCustomerCoupons(): JSX.Element {
     const[CouponList, setCouponList] = useState<CouponModel[]>(store.getState()
     .couponReducer.allCouponList);
 
@@ -30,7 +31,7 @@ function AllCoupons(): JSX.Element {
                 console.log(res.data);
             })
             .catch((err)=>{
-                console.log(err);
+                console.log(err);  
             })
 
     }, []);
@@ -43,14 +44,14 @@ function AllCoupons(): JSX.Element {
             {
                 (CouponList.length !== 0) ?
 
-                CouponList.map((cou, idx) => <CouponCard key={`coupon-card-${idx}`} coupon ={cou} />) :
+                CouponList.map((cou, idx) => <CustomerCouponCard key={`coupon-card-${idx}`} coupon ={cou} />) :
                     <EmptyView
                         title={"No Items Found"}
-                        description={"owr otters cod not find any coupons"} />
+                        description={"there are no coupons available in your account"} />
             }
             
         </div>
     );
 }
 
-export default AllCoupons;
+export default AllCustomerCoupons;

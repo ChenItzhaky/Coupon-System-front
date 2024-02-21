@@ -17,7 +17,7 @@ function CouponCard(props: CouponCardProps): JSX.Element {
             <h3>End Date: {moment (props.coupon.endDate).format("DD/MM/yy")} </h3>
             <h3>Amount: {props.coupon.amount} </h3>
             <h3>Price: {props.coupon.price} </h3>
-            <h3>Image: {props.coupon.image} </h3>
+            <h3>Image: <img src={props.coupon.image}/> </h3>
             
             
         </div>

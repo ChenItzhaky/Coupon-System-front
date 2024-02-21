@@ -8,18 +8,13 @@ function Admin(): JSX.Element {
         <div className="Admin">
 			<h1>welcome admin</h1>
 
-            <Link to = {"/customerSingle"}><button className="myButton" >get single customer  </button></Link>
-            <Link to = {"/companySingle"}> <button className="myButton" >get single company </button></Link>
+            {/* <Link to = {"/customerSingle"}><button className="myButton" >get single customer  </button></Link>
+            <Link to = {"/companySingle"}> <button className="myButton" >get single company </button></Link> */}
             <Link to = {"/customerList"}><button className="myButton" > get all customer {" "} </button></Link>
             <Link to = {"/companyList"}> <button className="myButton" >get all companies  {" "}</button></Link>
             <Link to = {"/registerCompany"}> <button className="myButton" >register company  {" "}</button></Link>
             <Link to = {"/register"}> <button className="myButton" >register customer  {" "}</button></Link>
-        
-            {/* todo: direct Usr interaction */}
-            {/* <button className="myButton" >update user {" "}</button> */}
-            {/* <button className="myButton" >get single user {" "} </button> */}
-            {/* <button className="myButton" >delete single user {" "} </button> */}
-            {/* <Link to = {"/UsrList"}> <button className="myButton" >get all users {" "} </button> </Link> */}
+            <Link to = {"/useList"}> <button className="myButton" >get all users {" "} </button> </Link>
 
         </div>
     );

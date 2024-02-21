@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import notifyService from "../../../Service/NotificationService";
 import webApiService from "../../../Service/WebApiService";
 import { gotAllCustomerAction } from "../../../Redux/CustomerAppState";
-import CustomerCard from "../customerCard/customerCard";
+import CustomerCard from "../CustomerCard/CustomerCard";
 import EmptyView from "../../pages/EmptyView/EmptyView";
 
 function AllCustomer(): JSX.Element {

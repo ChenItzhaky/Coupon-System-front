@@ -7,9 +7,11 @@ import store from '../Redux/Store';
 import { CompanyModel } from '../Models/CompanyModel';
 import { CouponModel } from '../Models/CouponModel';
 import { RegisterCompanyReqModel } from '../Models/RagisterCompany';
-import CouponByCategory from '../Components/Coupon/CouponByCategory/CouponByCategory';
+// import CouponByCategory from '../Components/Coupon/CouponByCategory/CouponByCategory';
 import { useParams } from 'react-router-dom';
 import { CategoryType } from '../Models/CategoryType';
+import { UserModel } from '../Models/UserModel';
+// import PurchaseCoupon from '../Components/Coupon/purchaseCoupon/purchaseCoupon';
 
 class WebApiService {
 
@@ -21,9 +23,9 @@ class WebApiService {
         return axios.post<any>(urlService.addCustomerUrl, data);
     }
 
-        public RegisterCompanyAuth(data: RegisterCompanyReqModel): Promise<AxiosResponse<any>> {
-            const token = store.getState().userReducer?.user?.token;
-            const headers = { 'Authorization': token };
+    public RegisterCompanyAuth(data: RegisterCompanyReqModel): Promise<AxiosResponse<any>> {
+        const token = store.getState().loginUserReducer?.loginUser?.token;
+        const headers = { 'Authorization': token };
         return axios.post<any>(urlService.addCompanyUrl, data ,{headers}) ;
     }
 
@@ -35,45 +37,56 @@ class WebApiService {
     public getCouponByCategory(category: CategoryType): Promise<AxiosResponse<CouponModel[]>> {
         return axios.get<CouponModel[]>(urlService.couponByCategoryUrl, {
             params : { category },
-            // headers:{
-            //     Authorization : guid
-            // }
+
         } );
     }
 
     public getAllCustomer(): Promise<AxiosResponse<CustomerModel[]>> {
         return axios.get<CustomerModel[]>(urlService.adminUrl + "/customer");
     }
+    public getAllUser(): Promise<AxiosResponse<UserModel[]>> {
+        return axios.get<UserModel[]>(urlService.allUsersUrl);
+    }
 
     public getAllCustomerAuth(): Promise<AxiosResponse<CustomerModel[]>> {
-        const token = store.getState().userReducer?.user?.token;
+        const token = store.getState().loginUserReducer?.loginUser?.token;
         const headers = { 'Authorization': token };
         return axios.get<CustomerModel[]>(urlService.adminUrl + "/customer", { headers });
     }
+    public getAllUserAuth(): Promise<AxiosResponse<UserModel[]>> {
+        const token = store.getState().loginUserReducer?.loginUser?.token;
+        const headers = { 'Authorization': token };
+        return axios.get<UserModel[]>(urlService.allUsersUrl , { headers });
+    }
+
 
         public getSingleCustomerAuth(id: number): Promise<AxiosResponse<CustomerModel[]>> {
-        const token = store.getState().userReducer?.user?.token;
+        const token = store.getState().loginUserReducer?.loginUser?.token;
         const headers = { 'Authorization': token };
         return axios.get<CustomerModel[]>(`${urlService.adminUrl + "/customer"}/${id}` , { headers });
     }
     
     public getThisCustomerAuth(): Promise<AxiosResponse<CustomerModel>> {
-        const token = store.getState().userReducer?.user?.token;
+        const token = store.getState().loginUserReducer?.loginUser?.token;
         const headers = { 'Authorization': token };
         return axios.get<CustomerModel>(urlService.customerUrl , { headers });
     }
 
-        public deleteCustomerAuth(id: number): Promise<AxiosResponse<any>> {
-        const headers = { 'Authorization': store.getState().userReducer.user.token };
+    public deleteCustomerAuth(id: number): Promise<AxiosResponse<any>> {
+        const headers = { 'Authorization': store.getState().loginUserReducer.loginUser.token };
         return axios.delete<any>(`${urlService.adminUrl + "/customer"}/${id}`, { headers })
+    } 
+    public PurchaseCouponAuth(id: number): Promise<AxiosResponse<any>> {
+        const headers = { 'Authorization': store.getState().loginUserReducer.loginUser.token };
+        return axios.put<any>(`${urlService.PurchaseCoupon}/${id}`, {}, { headers })
     }
 
         public deleteCompanyAuth(id: number): Promise<AxiosResponse<any>> {
-        const headers = { 'Authorization': store.getState().userReducer.user.token };
+        const headers = { 'Authorization': store.getState().loginUserReducer.loginUser.token };
         return axios.delete<any>(`${urlService.adminUrl + "/companies"}/${id}`, { headers })
     }
         public deleteCouponAuth(id: number): Promise<AxiosResponse<any>> {
-        const headers = { 'Authorization': store.getState().userReducer.user.token };
+        const headers = { 'Authorization': store.getState().loginUserReducer.loginUser.token };
         return axios.delete<any>(`${urlService.companyCouponUrl }/${id}`, { headers })
     }
 
@@ -83,60 +96,67 @@ class WebApiService {
     }
 
     public getSingleCompanies(id: number): Promise<AxiosResponse<CompanyModel[]>> {
-        const headers = { 'Authorization': store.getState().userReducer.user.token };
+        const headers = { 'Authorization': store.getState().loginUserReducer.loginUser.token };
         return axios.get<CompanyModel[]>(`${urlService.adminUrl + "/companies"}/${id}` , { headers });
     }
 
     public getSingleCompaniesAuth(id: number): Promise<AxiosResponse<CompanyModel[]>> {
-        const token = store.getState().userReducer?.user?.token;
+        const token = store.getState().loginUserReducer?.loginUser?.token;
         const headers = { 'Authorization': token };
         return axios.get<CompanyModel[]>(`${urlService.adminUrl + "/companies"}/${id}` , { headers });
     }
 
     public getThisCompaniesAuth(): Promise<AxiosResponse<CompanyModel>> {
-        const token = store.getState().userReducer?.user?.token;
+        const token = store.getState().loginUserReducer?.loginUser?.token;
         const headers = { 'Authorization': token };
         return axios.get<CompanyModel>(urlService.companyUrl , { headers });
     }
 
     public getAllCompaniesAuth(): Promise<AxiosResponse<CompanyModel[]>> {
-        const token = store.getState().userReducer?.user?.token;
+        const token = store.getState().loginUserReducer?.loginUser?.token;
         const headers = { 'Authorization': token };
         return axios.get<CompanyModel[]>(urlService.adminUrl + "/companies", { headers });
     }
 
 
     public getAllCompanyCouponAuth(): Promise<AxiosResponse<CouponModel[]>> {
-        const token = store.getState().userReducer?.user?.token;
+        const token = store.getState().loginUserReducer?.loginUser?.token;
         const headers = { 'Authorization': token };
         return axios.get<CouponModel[]>(urlService.companyCouponUrl, { headers });
     }
     
     public getAllCustomerCouponAuth(): Promise<AxiosResponse<CouponModel[]>> {
-        const token = store.getState().userReducer?.user?.token;
+        const token = store.getState().loginUserReducer?.loginUser?.token;
         const headers = { 'Authorization': token };
         return axios.get<CouponModel[]>(urlService.customerCouponUrl, { headers });
     }
 
 
     public updateCustomerAuth(id: number, customer: CustomerModel): Promise<AxiosResponse<CustomerModel>> {
-        const headers = { 'Authorization': store.getState().userReducer.user.token };
+        const headers = { 'Authorization': store.getState().loginUserReducer.loginUser.token };
         return axios.put(`${urlService.adminCustomerUrl}/${id}`, customer, { headers });
     }
 
     public updateCompanyAuth(id: number, company: CompanyModel): Promise<AxiosResponse<CompanyModel>> {
-        const headers = { 'Authorization': store.getState().userReducer.user.token }
+        const headers = { 'Authorization': store.getState().loginUserReducer.loginUser.token }
         return axios.put(`${urlService.adminCompanyUrl}/${id}`, company, { headers });
+    }  
+    
+    public updateCouponAuth(id: number, coupon: CouponModel): Promise<AxiosResponse<CouponModel>> {
+        const headers = { 'Authorization': store.getState().loginUserReducer.loginUser.token }
+        return axios.put(`${urlService.UpdateCouponUrl}/${id}`, coupon, { headers });
     }
 
     
     public addCouponAuth(coupon: CouponModel): Promise<AxiosResponse<CouponModel>> {
-        const headers = { 'Authorization': store.getState().userReducer.user.token };
+        const headers = { 'Authorization': store.getState().loginUserReducer.loginUser.token };
         return axios.post<CouponModel>(urlService.AddCoupon, coupon, { headers });
-    }
+    }    
+    
+
 
     public getAllCompanyCoupon(): Promise<AxiosResponse<CouponModel[]>>{
-        const headers = { 'Authorization': store.getState().userReducer.user.token };
+        const headers = { 'Authorization': store.getState().loginUserReducer.loginUser.token };
         return axios.get<CouponModel[]>(urlService.companyCouponUrl, { headers });
     }
     // public getAllTasksAuth(): Promise<AxiosResponse<TodoModel[]>> {

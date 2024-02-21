@@ -31,14 +31,14 @@ const schema = zod.object({
 
     name: zod.string().nonempty("enter name"),
     email: zod.string().nonempty("enter email"),
-    password: zod.string().nonempty("enter email"), //todo: enter password from DB
+    password: zod.string().nonempty("enter password"), //todo: enter password from DB
 
 
 });
 
 
 
-const { register, handleSubmit, formState: { errors} } =
+const { register, handleSubmit, formState: { errors, isValid, isSubmitting} } =
     useForm<CompanyModel>({ defaultValues: defaultValuesObj, mode: "all", resolver: zodResolver(schema) });
 
 const onSubmit: SubmitHandler<CompanyModel> = (data: CompanyModel) => {
@@ -54,7 +54,6 @@ const onSubmit: SubmitHandler<CompanyModel> = (data: CompanyModel) => {
 
 
 };
-
 
 
 
@@ -82,7 +81,7 @@ return (
             {(errors?.coupons) ? <span>{errors.coupons.message}</span> : <label htmlFor="group">coupons</label>}
             <input {...register("coupons")} type="text" name="coupons" placeholder="coupons..." />  {/* //todo */}
 
-
+            <button disabled={!isValid || isSubmitting}>Update</button>
         </form>
     </div>
 );

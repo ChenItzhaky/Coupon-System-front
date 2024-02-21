@@ -1,37 +1,30 @@
 import { useEffect, useState } from "react";
 import "./UserList.css";
-import webApiService from "../../../Service/WebApiService";
-import UserCard from "../UserCard/UserCard";
-import EmptyView from "../../pages/EmptyView/EmptyView";
-import { UserModel } from "../../../Models/UserModel";
+import { UserModel } from '../../../Models/UserModel';
 import store from "../../../Redux/Store";
+import notifyService from "../../../Service/NotificationService";
+import { gotAllUserAction } from "../../../Redux/UserAppState";
+import webApiService from "../../../Service/WebApiService";
 import { useDispatch } from "react-redux";
 
-function AllCustomer(): JSX.Element {
-    const[UserList, setUserList] = useState<UserModel[]>(store.getState()
+function UserList(): JSX.Element {
+    const[userList, setUserList] = useState<UserModel[]>(store.getState()
     .userReducer.userList);
 
     const dispatch = useDispatch();
 
-
-
-    // Effect = very very very very long operation...
     useEffect(() => {
 
-        if UserList.length > 0) {
-            return;
-        }
-
         webApiService.getAllUserAuth()
-            .then(res => {
-                notifyService.success('user list');
+        .then(res =>{
+                console.log(res.data);
                 setUserList(res.data);
                 store.dispatch(gotAllUserAction(res.data));
-                dispatch(gotAllUserAction(res.data));
-                console.log(res.data);
+                notifyService.success("All Users")
             })
-            .catch((err)=>{
+            .catch(err =>{
                 console.log(err);
+                notifyService.error("som thing went wrong")
             })
 
     }, []);
@@ -41,17 +34,29 @@ function AllCustomer(): JSX.Element {
 
         <div className="UserList">
 			<h1> all users  </h1>
-
-            {
-                (UserList.length !== 0) ?
-
-                UserList.map((t, idx) => <UserCard key={`user-card-${idx}`} user={t} />) :
-                    <EmptyView
-                        title={"No Items Found"}
-                        description={"there are no tasks available right now"} />
-            }
-            
+            <table>
+                <thead>
+                    <tr>
+                        <th> ID </th>
+                        <th> Email</th>
+                        <th> Clients Type </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                    userList.map((u,idx) =>
+                        <tr key={`table-tr-${idx}`}>
+                            <td>{u.id}</td>
+                            <td>{u.email}</td>
+                            <td>{u.ClientsType}</td>
+                        </tr>)
+                    }
+                        
+                </tbody>
+            </table>
         </div>
     );
 }
 export default UserList;
+
+

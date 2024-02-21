@@ -24,7 +24,7 @@ function ThisCompany(): JSX.Element {
         <div className="thisCompany">
             <h1> your company </h1>
             {company && (
-                <div className="companyCard">
+                <div className="CompanyCard">
                     
                     <p>ID: {company.id}</p>
                     <p>name: {company.name}</p>
@@ -34,7 +34,7 @@ function ThisCompany(): JSX.Element {
                     <h2>coupon list</h2>
                     <ul className="CouponList">
                         {company.coupons.map((Coupon) => (
-                                <li key={Coupon.id} className="couponCard">
+                                <li key={Coupon.id} className="CouponCard">
                                     <p>title: {Coupon.title}</p>
                                     <p>description: {Coupon.description}</p>
                                     <p>category: {Coupon.category}</p>
@@ -42,7 +42,7 @@ function ThisCompany(): JSX.Element {
                                     <p>end date: {Coupon.endDate.toString()}</p>
                                     <p>amount: {Coupon.amount}</p>
                                     <p>price: {Coupon.price}</p>
-                                    <p>image: {Coupon.image}</p>
+                                    <p>image: <img src={Coupon.image} /></p>
     
                                 </li>
                             ))}
