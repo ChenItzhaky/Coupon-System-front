@@ -9,7 +9,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import webApiService from "../../../Service/WebApiService";
 import { zodResolver } from "@hookform/resolvers/zod";
 import notifyService from "../../../Service/NotificationService";
-import { updatedCustomerAction } from "../../../Redux/CustomerAppState";
+import { gotAllCustomerAction, updatedCustomerAction } from "../../../Redux/CustomerAppState";
 
 
 function UpdateCustomer(): JSX.Element {
@@ -19,6 +19,10 @@ const params = useParams();
 const idx = +(params.id || 0);
 const [obj] = useState<CustomerModel>(store.getState().customerReducer.customerList.filter(c => c.id === idx)[0])
 console.log(obj);
+
+const[CustomerList, setCustomerList] =
+useState<CustomerModel[]>(store.getState()
+.customerReducer.customerList);
 
 
 
@@ -47,9 +51,24 @@ const onSubmit: SubmitHandler<CustomerModel> = (data: CustomerModel) => {
         .then(res => {
             notifyService.success("Customer updated")
             dispatch(updatedCustomerAction(res.data));
-            navigate("/customerList");
+
+            webApiService.getAllCustomerAuth() //todo:לשנות לשליפה והחלפה של השינוי הספציפי
+                .then(res => {
+                    notifyService.success('customer list');
+                    setCustomerList(res.data);
+                    store.dispatch(gotAllCustomerAction(res.data));
+                    dispatch(gotAllCustomerAction(res.data));
+
+                    navigate("/customerList");
+                })
+                .catch((err)=>{
+                    console.log(err);
+                })
+    
+            
         })
         .catch(err => notifyService.error(err))
+
 
 };
 
@@ -73,7 +92,6 @@ return (
 
             {(errors?.password) ? <span>{errors.password.message}</span> : <label htmlFor="group">password</label>}
             <input {...register("password")} type="text" name="password" placeholder="password..." />
-
 
 
             <button disabled={!isValid || isSubmitting}>Update Customer</button>

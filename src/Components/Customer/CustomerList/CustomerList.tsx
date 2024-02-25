@@ -9,6 +9,7 @@ import { gotAllCustomerAction } from "../../../Redux/CustomerAppState";
 import CustomerCard from "../CustomerCard/CustomerCard";
 import EmptyView from "../../pages/EmptyView/EmptyView";
 
+
 function AllCustomer(): JSX.Element {
     const[CustomerList, setCustomerList] =
     useState<CustomerModel[]>(store.getState()
@@ -22,6 +23,7 @@ function AllCustomer(): JSX.Element {
     useEffect(() => {
 
         if (CustomerList.length > 0) {
+
             return;
         }
 
@@ -31,7 +33,7 @@ function AllCustomer(): JSX.Element {
                 setCustomerList(res.data);
                 store.dispatch(gotAllCustomerAction(res.data));
                 dispatch(gotAllCustomerAction(res.data));
-                console.log(res.data);
+
             })
             .catch((err)=>{
                 console.log(err);

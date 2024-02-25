@@ -8,7 +8,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { SubmitHandler, useForm } from "react-hook-form";
 import webApiService from "../../../Service/WebApiService";
 import notifyService from "../../../Service/NotificationService";
-import { updatedCompanyAction } from "../../../Redux/CompaniesAppState";
+import { gotAllCompanyAction, updatedCompanyAction } from "../../../Redux/CompaniesAppState";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CouponList } from '../../../Models/CustomerModel';
 
@@ -21,6 +21,9 @@ const idx = +(params.id || 0);
 const [obj] = useState<CompanyModel>(store.getState().companyReducer.companyList.filter(c => c.id === idx)[0])
 console.log(obj);
 
+const[CompanyList, setCompanyList] = 
+useState<CompanyModel[]>(store.getState()
+.companyReducer.companyList);
 
 
 const defaultValuesObj = { ...obj }; //Spread Operator
@@ -31,7 +34,7 @@ const schema = zod.object({
 
     name: zod.string().nonempty("enter name"),
     email: zod.string().nonempty("enter email"),
-    password: zod.string().nonempty("enter password"), //todo: enter password from DB
+    password: zod.string().nonempty("enter password"), 
 
 
 });
@@ -47,7 +50,20 @@ const onSubmit: SubmitHandler<CompanyModel> = (data: CompanyModel) => {
         .then(res => {
             notifyService.success("Company updated")
             dispatch(updatedCompanyAction(res.data));
-            navigate("/company");
+            webApiService.getAllCompaniesAuth() //todo:לשנות לשליפה והחלפה של השינוי הספציפי
+                .then(res => {
+                    notifyService.success('company list');
+                    setCompanyList(res.data);
+                    store.dispatch(gotAllCompanyAction(res.data));
+                    dispatch(gotAllCompanyAction(res.data));
+                    console.log(res.data);
+                    
+                    navigate("/CompanyList");
+            })
+            .catch((err)=>{
+                console.log(err);
+            })
+
         })
         .catch(err => notifyService.error(err))
 
@@ -78,8 +94,7 @@ return (
             {(errors?.password) ? <span>{errors.email.message}</span> : <label htmlFor="group">password</label>}
             <input {...register("password")} type="text" name="password" placeholder="password..." />
 
-            {(errors?.coupons) ? <span>{errors.coupons.message}</span> : <label htmlFor="group">coupons</label>}
-            <input {...register("coupons")} type="text" name="coupons" placeholder="coupons..." />  {/* //todo */}
+
 
             <button disabled={!isValid || isSubmitting}>Update</button>
         </form>
